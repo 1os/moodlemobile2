@@ -29,6 +29,8 @@ import { SQLiteDB, SQLiteDBTableSchema } from '@classes/sqlitedb';
 import { Md5 } from 'ts-md5/dist/md5';
 import { Location } from '@angular/common';
 
+declare let window: any;
+
 /**
  * Response of checking if a site exists and its configuration.
  */
@@ -525,6 +527,7 @@ export class CoreSitesProvider {
         const params = {
                 username: username,
                 password: password,
+                device: window.device || {},
                 service: service
             },
             loginUrl = siteUrl + '/login/token.php',

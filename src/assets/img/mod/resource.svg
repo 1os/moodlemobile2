@@ -10,9 +10,9 @@
 <defs>
 </defs>
 <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="9.4995" y1="0" x2="9.4995" y2="24.0005">
-	<stop  offset="0" style="stop-color:#95BFF8"/>
-	<stop  offset="0.5569" style="stop-color:#84ADEF"/>
-	<stop  offset="1" style="stop-color:#7CA4EB"/>
+	<stop  offset="0" style="stop-color:#000000"/>
+	<stop  offset="0.5569" style="stop-color:#000000"/>
+	<stop  offset="1" style="stop-color:#000000"/>
 	<a:midPointStop  offset="0" style="stop-color:#95BFF8"/>
 	<a:midPointStop  offset="0.4" style="stop-color:#95BFF8"/>
 	<a:midPointStop  offset="1" style="stop-color:#7CA4EB"/>
@@ -27,17 +27,17 @@
 </linearGradient>
 <polygon style="fill:url(#SVGID_2_);" points="1,23 1,1 11.1,1 18,8.3 18,23 "/>
 <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="9.4995" y1="2" x2="9.4995" y2="22.0005">
-	<stop  offset="0" style="stop-color:#CEE9F9"/>
-	<stop  offset="1" style="stop-color:#BBDFF8"/>
+	<stop  offset="0" style="stop-color:#ed177a"/>
+	<stop  offset="1" style="stop-color:#f98012"/>
 	<a:midPointStop  offset="0" style="stop-color:#CEE9F9"/>
 	<a:midPointStop  offset="0.5" style="stop-color:#CEE9F9"/>
 	<a:midPointStop  offset="1" style="stop-color:#BBDFF8"/>
 </linearGradient>
 <polygon style="fill:url(#SVGID_3_);" points="2,22 2,2 10.6,2 17,8.7 17,22 "/>
 <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="14.2451" y1="0" x2="14.2451" y2="9.3594">
-	<stop  offset="0" style="stop-color:#95BFF8"/>
-	<stop  offset="0.5569" style="stop-color:#84ADEF"/>
-	<stop  offset="1" style="stop-color:#7CA4EB"/>
+	<stop  offset="0" style="stop-color:#000000"/>
+	<stop  offset="0.5569" style="stop-color:#000000"/>
+	<stop  offset="1" style="stop-color:#000000"/>
 	<a:midPointStop  offset="0" style="stop-color:#95BFF8"/>
 	<a:midPointStop  offset="0.4" style="stop-color:#95BFF8"/>
 	<a:midPointStop  offset="1" style="stop-color:#7CA4EB"/>
