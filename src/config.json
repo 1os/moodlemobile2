@@ -59,6 +59,11 @@
     "demo_sites": {
 
     },
+  "font_sizes": [
+    62.5,
+    75.89,
+    93.75
+  ],
     "customurlscheme": "lpmobile",
     "siteurl": "https://exams.learnersplatform.com",
     "sitename": "LearnersPlatform",
