@@ -3,12 +3,12 @@
    xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
    xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
-  <Identity Name="16189FirstOpenSystems.learnersplatformtest"
+  <Identity Name="60937LearnersPlatform.LearnersPlatform"
     ProcessorArchitecture="x64"
-    Publisher="	CN=027E88B8-9974-40E5-A112-DC3A82EFDBBD"
+    Publisher="CN=E70D0F31-AC8A-4807-ABCF-4F8C60877862"
     Version="3.8.0.0" />
   <Properties>
-    <DisplayName>LearnersPlatform Desktop</DisplayName>
+    <DisplayName>LearnersPlatform</DisplayName>
     <PublisherDisplayName>LearnersPlatform</PublisherDisplayName>
     <Description>LearnersPlatform official app</Description>
     <Logo>assets\StoreLogo.png</Logo>
@@ -20,10 +20,13 @@
     <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14316.0" MaxVersionTested="10.0.14316.0" />
   </Dependencies>
   <Capabilities>
+    <Capability Name="internetClient"/>
     <rescap:Capability Name="runFullTrust"/>
+    <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="webcam" />
   </Capabilities>
   <Applications>
-    <Application Id="com.learnersplatform.mobile" Executable="app\LearnersPlatformDesktop.exe" EntryPoint="Windows.FullTrustApplication">
+    <Application Id="com.learnersplatform.mobile" Executable="app\learnersplatform.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
        BackgroundColor="#464646"
        DisplayName="LearnersPlatformDesktop"

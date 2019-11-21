@@ -1,9 +1,9 @@
 {
-  "name": "moodlemobile",
+  "name": "learnersplatform",
   "version": "3.8.0",
   "description": "The official app for LSP.",
   "author": {
-    "name": "LSP Pty Ltd.",
+    "name": "LearnersPlatform",
     "email": "mobile@learnersplatform.com"
   },
   "config": {
@@ -37,7 +37,7 @@
     "postionic:build": "npx gulp copy-component-templates",
     "desktop.pack": "npx electron-builder --dir",
     "desktop.dist": "npx electron-builder -p never",
-    "windows.store": "npx electron-windows-store --input-directory .\\desktop\\dist\\win-unpacked --output-directory .\\desktop\\store -a .\\resources\\desktop -m .\\desktop\\assets\\windows\\AppXManifest.xml --package-version 0.0.0.0 --package-name LSPDesktop"
+    "windows.store": "npx electron-windows-store --input-directory .\\desktop\\dist\\win-unpacked --output-directory .\\desktop\\store -a .\\resources\\desktop -m .\\desktop\\assets\\windows\\AppXManifest.xml --package-version 0.0.0.0 --package-name LearnersPlatformDesktop"
   },
   "dependencies": {
     "@angular/animations": "5.2.10",
@@ -107,6 +107,7 @@
     "cordova-sqlite-storage": "2.6.0",
     "cordova-support-google-services": "1.2.1",
     "cordova-windows": "^7.0.0",
+    "electron-windows-store": "^2.1.0",
     "es6-promise-plugin": "4.2.2",
     "font-awesome": "4.7.0",
     "ionic-angular": "3.9.3",
@@ -114,6 +115,7 @@
     "jszip": "3.1.5",
     "moment": "2.22.2",
     "nl.kingsquare.cordova.background-audio": "1.0.1",
+    "node-machine-id": "^1.1.12",
     "phonegap-plugin-multidex": "1.0.0",
     "phonegap-plugin-push": "git+https://github.com/moodlemobile/phonegap-plugin-push.git#moodle-v3",
     "promise.prototype.finally": "3.1.0",
@@ -183,8 +185,8 @@
   },
   "main": "desktop/electron.js",
   "build": {
-    "appId": "com.learnersplatform.mobile",
-    "productName": "LSP Desktop",
+    "appId": "com.learnersplatform.desktop",
+    "productName": "60937LearnersPlatform.LearnersPlatform",
     "files": [
       "desktop/electron.js",
       "www/**/*",
@@ -205,7 +207,7 @@
     },
     "protocols": [
       {
-        "name": "LSP Mobile URL",
+        "name": "LearnersPlatform Mobile URL",
         "schemes": [
           "lpmobile"
         ],

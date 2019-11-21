@@ -1,17 +1,17 @@
 
 // dialog isn't used, but not requiring it throws an error.
-const {app, BrowserWindow, ipcMain, shell, dialog, Menu} = require('electron');
+const {app, BrowserWindow, ipcMain, shell, dialog, Menu, remote} = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
 const os = require('os');
-const userAgent = 'MoodleMobile';
+const userAgent = 'LPMobile';
 const isMac = os.platform().indexOf('darwin') != -1;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow,
-    appName = 'Moodle Desktop', // Default value.
+    appName = 'LearnersPlatform', // Default value.
     isReady = false,
     configRead = false;
 
@@ -28,6 +28,19 @@ function createWindow() {
             height = display.workArea.height || height;
         }
     }
+
+    let iff =  os.networkInterfaces();
+    let id =Object.keys(iff).filter(function(key){
+        return iff[key].filter(function(addr){
+            return addr.internal==false;
+        }).length>0;
+    }).map(function(key){
+        return iff[key].filter(function(addr){
+            return !addr.internal;
+        }).map(function(addr){
+            return addr.mac;
+        })[0];
+    })[0];
 
     const options = {
         width: width,
@@ -51,6 +64,7 @@ function createWindow() {
         protocol: 'file:',
         slashes: true
     }));
+    // mainWindow.openDevTools();
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();
@@ -68,7 +82,7 @@ function createWindow() {
     });
 
     // Append some text to the user agent.
-    mainWindow.webContents.setUserAgent(mainWindow.webContents.getUserAgent() + ' ' + userAgent);
+    mainWindow.webContents.setUserAgent(mainWindow.webContents.getUserAgent() + ' ' + userAgent + ' ' +id);
 
     // Add shortcut to open dev tools: Cmd + Option + I in MacOS, Ctrl + Shift + I in Windows/Linux.
     mainWindow.webContents.on('before-input-event', function(e, input) {
@@ -128,8 +142,8 @@ fs.readFile(path.join(__dirname, 'config.json'), 'utf8', (err, data) => {
     configRead = true;
 
     // Default values.
-    var ssoScheme = 'moodlemobile',
-        appId = 'com.moodle.moodlemobile';
+    var ssoScheme = 'learnersplatformmobile',
+        appId = 'com.learnersplatform.mobile';
 
     if (!err) {
         try {
@@ -213,6 +227,7 @@ ipcMain.on('focusApp', focusApp);
 
 // Configure the app's menu.
 function setAppMenu() {
+
     let menuTemplate = [
         {
             label: appName,
@@ -254,7 +269,7 @@ function setAppMenu() {
                     label: 'Docs',
                     accelerator: 'CmdOrCtrl+H',
                     click() {
-                        shell.openExternal('https://docs.moodle.org/en/Moodle_Mobile');
+                        shell.openExternal('https://docs.learnersplatform.org/en/Mobile');
                     }
                 }
             ]
