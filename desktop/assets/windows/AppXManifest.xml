@@ -6,7 +6,7 @@
   <Identity Name="16189FirstOpenSystems.learnersplatformtest"
     ProcessorArchitecture="x64"
     Publisher="	CN=027E88B8-9974-40E5-A112-DC3A82EFDBBD"
-    Version="3.7.3.0" />
+    Version="3.8.0.0" />
   <Properties>
     <DisplayName>LearnersPlatform Desktop</DisplayName>
     <PublisherDisplayName>LearnersPlatform</PublisherDisplayName>

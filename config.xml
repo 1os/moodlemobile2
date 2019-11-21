@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.learnersplatform.mobile" version="3.7.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.learnersplatform.mobile" version="3.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>LPMobile</name>
     <description>LearnersPlatform official app</description>
     <author email="mobile@learnersplatform.com" href="https://learnersplatform.com">LearnersPlatform Mobile team</author>
@@ -172,6 +172,6 @@
     <config-file parent="FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED" target="*-Info.plist">
         <string>YES</string>
     </config-file>
-    <engine name="android" spec="~7.1.4" />
-    <engine name="ios" spec="~4.5.5" />
+    <engine name="android" spec="7.1.2" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

@@ -1,10 +1,10 @@
 {
   "name": "moodlemobile",
-  "version": "3.7.3",
-  "description": "The official app for Moodle.",
+  "version": "3.8.0",
+  "description": "The official app for LSP.",
   "author": {
-    "name": "Moodle Pty Ltd.",
-    "email": "mobile@moodle.com"
+    "name": "LSP Pty Ltd.",
+    "email": "mobile@learnersplatform.com"
   },
   "config": {
     "ionic_webpack": "./config/webpack.config.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/moodlehq/moodlemobile2.git"
+    "url": "https://github.com/1os/moodlemobile2.git"
   },
   "license": "Apache-2.0",
   "licenses": [
@@ -37,7 +37,7 @@
     "postionic:build": "npx gulp copy-component-templates",
     "desktop.pack": "npx electron-builder --dir",
     "desktop.dist": "npx electron-builder -p never",
-    "windows.store": "npx electron-windows-store --input-directory .\\desktop\\dist\\win-unpacked --output-directory .\\desktop\\store -a .\\resources\\desktop -m .\\desktop\\assets\\windows\\AppXManifest.xml --package-version 0.0.0.0 --package-name MoodleDesktop"
+    "windows.store": "npx electron-windows-store --input-directory .\\desktop\\dist\\win-unpacked --output-directory .\\desktop\\store -a .\\resources\\desktop -m .\\desktop\\assets\\windows\\AppXManifest.xml --package-version 0.0.0.0 --package-name LSPDesktop"
   },
   "dependencies": {
     "@angular/animations": "5.2.10",
@@ -183,8 +183,8 @@
   },
   "main": "desktop/electron.js",
   "build": {
-    "appId": "com.moodle.moodledesktop",
-    "productName": "Moodle Desktop",
+    "appId": "com.learnersplatform.mobile",
+    "productName": "LSP Desktop",
     "files": [
       "desktop/electron.js",
       "www/**/*",
@@ -205,9 +205,9 @@
     },
     "protocols": [
       {
-        "name": "Moodle Mobile URL",
+        "name": "LSP Mobile URL",
         "schemes": [
-          "moodlemobile"
+          "lpmobile"
         ],
         "role": "Viewer"
       }
