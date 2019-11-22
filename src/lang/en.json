@@ -12,7 +12,7 @@
     "areyousure": "Are you sure?",
     "back": "Back",
     "cancel": "Cancel",
-    "cannotconnect": "Cannot connect: Verify that you have correctly typed the URL and that your site uses LSP 2.4 or later.",
+    "cannotconnect": "Cannot connect: Verify that you have correctly typed the URL and that your site uses LSP 3.1 or later.",
     "cannotdownloadfiles": "File downloading is disabled. Please contact your site administrator.",
     "captureaudio": "Record audio",
     "capturedimage": "Taken picture.",
@@ -120,6 +120,7 @@
     "invalidformdata": "Incorrect form data",
     "ios": "iOS",
     "labelsep": ":",
+    "filter": "Filter",
     "lastaccess": "Last access",
     "lastdownloaded": "Last downloaded",
     "lastmodified": "Last modified",
@@ -205,6 +206,7 @@
     "redirectingtosite": "You will be redirected to the site.",
     "refresh": "Refresh",
     "remove": "Remove",
+    "removefiles": "Remove files {{$a}}",
     "required": "Required",
     "requireduserdatamissing": "This user lacks some required profile data. Please enter the data in your site and try again.<br>{{$a}}",
     "resourcedisplayopen": "Open",
@@ -273,6 +275,8 @@
     "unlimited": "Unlimited",
     "unzipping": "Unzipping",
     "upgraderunning": "Site is being upgraded, please retry later.",
+    "updaterequired": "App update required",
+    "updaterequireddesc": "Please update your app to version {{$a}}",
     "user": "User",
     "userdeleted": "This user account has been deleted",
     "userdetails": "User details",
@@ -293,5 +297,7 @@
     "wsfunctionnotavailable": "The web service function is not available.",
     "year": "year",
     "years": "years",
-    "yes": "Yes"
+    "yes": "Yes",
+    "youreoffline": "You are offline",
+    "youreonline": "You are back online"
 }

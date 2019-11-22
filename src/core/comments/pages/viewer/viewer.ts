@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ export class CoreCommentsViewerPage implements OnDestroy {
     area: string;
     page: number;
     title: string;
+    courseId: number;
     canLoadMore = false;
     loadMoreError = false;
     canAddComments = false;
@@ -74,6 +75,7 @@ export class CoreCommentsViewerPage implements OnDestroy {
         this.itemId = navParams.get('itemId');
         this.area = navParams.get('area') || '';
         this.title = navParams.get('title') || this.translate.instant('core.comments.comments');
+        this.courseId = navParams.get('courseId');
         this.page = 0;
 
         // Refresh data if comments are synchronized automatically.
@@ -113,9 +115,9 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Fetches the comments.
      *
-     * @param  {boolean} sync         When to resync comments.
-     * @param  {boolean} [showErrors] When to display errors or not.
-     * @return {Promise<any>} Resolved when done.
+     * @param sync When to resync comments.
+     * @param showErrors When to display errors or not.
+     * @return Resolved when done.
      */
     protected fetchComments(sync: boolean, showErrors?: boolean): Promise<any> {
         this.loadMoreError = false;
@@ -156,7 +158,12 @@ export class CoreCommentsViewerPage implements OnDestroy {
                 this.canAddComments = this.addDeleteCommentsAvailable && response.canpost;
 
                 const comments = response.comments.sort((a, b) => b.timecreated - a.timecreated);
-                this.canLoadMore = comments.length > 0 && comments.length >= CoreCommentsProvider.pageSize;
+                if (typeof response.count != 'undefined') {
+                    this.canLoadMore = (this.comments.length + comments.length) > response.count;
+                } else {
+                    // Old style.
+                    this.canLoadMore = response.comments.length > 0 && response.comments.length >= CoreCommentsProvider.pageSize;
+                }
 
                 return Promise.all(comments.map((comment) => {
                     // Get the user profile image.
@@ -204,8 +211,8 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Function to load more commemts.
      *
-     * @param {any} [infiniteComplete] Infinite scroll complete function. Only used from core-infinite-loading.
-     * @return {Promise<any>} Resolved when done.
+     * @param infiniteComplete Infinite scroll complete function. Only used from core-infinite-loading.
+     * @return Resolved when done.
      */
     loadMore(infiniteComplete?: any): Promise<any> {
         this.page++;
@@ -219,9 +226,9 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Refresh the comments.
      *
-     * @param {boolean} showErrors Whether to display errors or not.
-     * @param {any} [refresher] Refresher.
-     * @return {Promise<any>} Resolved when done.
+     * @param showErrors Whether to display errors or not.
+     * @param refresher Refresher.
+     * @return Resolved when done.
      */
     refreshComments(showErrors: boolean, refresher?: any): Promise<any> {
         this.refreshIcon = 'spinner';
@@ -241,7 +248,7 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Show sync warnings if any.
      *
-     * @param {string[]} warnings the warnings
+     * @param warnings the warnings
      */
     private showSyncWarnings(warnings: string[]): void {
         const message = this.textUtils.buildMessage(warnings);
@@ -253,8 +260,8 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Tries to synchronize comments.
      *
-     * @param  {boolean} showErrors Whether to display errors or not.
-     * @return {Promise<any>}       Promise resolved if sync is successful, rejected otherwise.
+     * @param showErrors Whether to display errors or not.
+     * @return Promise resolved if sync is successful, rejected otherwise.
      */
     private syncComments(showErrors: boolean): Promise<any> {
         return this.commentsSync.syncComments(this.contextLevel, this.instanceId, this.componentName, this.itemId,
@@ -272,7 +279,7 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Add a new comment to the list.
      *
-     * @param {Event} e Event.
+     * @param e Event.
      */
     addComment(e: Event): void {
         e.preventDefault();
@@ -302,8 +309,8 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Delete a comment.
      *
-     * @param {Event} e     Click event.
-     * @param {any} comment Comment to delete.
+     * @param e Click event.
+     * @param comment Comment to delete.
      */
     deleteComment(e: Event, comment: any): void {
         e.preventDefault();
@@ -336,8 +343,8 @@ export class CoreCommentsViewerPage implements OnDestroy {
     /**
      * Restore a comment.
      *
-     * @param {Event} e Click event.
-     * @param {any} comment Comment to delete.
+     * @param e Click event.
+     * @param comment Comment to delete.
      */
     undoDeleteComment(e: Event, comment: any): void {
         e.preventDefault();

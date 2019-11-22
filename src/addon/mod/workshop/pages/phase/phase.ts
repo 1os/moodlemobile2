@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ export class AddonModWorkshopPhaseInfoPage {
     /**
      * Open task.
      *
-     * @param {any} task Task to be done.
+     * @param task Task to be done.
      */
     runTask(task: any): void {
         if (task.code == 'submit') {

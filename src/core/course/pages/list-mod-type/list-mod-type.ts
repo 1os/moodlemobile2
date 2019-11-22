@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ export class CoreCourseListModTypePage {
     /**
      * Fetches the data.
      *
-     * @return {Promise<any>} Resolved when done.
+     * @return Resolved when done.
      */
     protected fetchData(): Promise<any> {
         // Get all the modules in the course.
@@ -113,7 +113,7 @@ export class CoreCourseListModTypePage {
     /**
      * Refresh the data.
      *
-     * @param {any} refresher Refresher.
+     * @param refresher Refresher.
      */
     refreshData(refresher: any): void {
         this.courseProvider.invalidateSections(this.courseId).finally(() => {

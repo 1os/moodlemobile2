@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ export class AddonBlockStarredCoursesComponent extends CoreBlockBaseComponent im
     /**
      * Perform the invalidate content function.
      *
-     * @return {Promise<any>} Resolved when done.
+     * @return Resolved when done.
      */
     protected invalidateContent(): Promise<any> {
         const promises = [];
@@ -104,7 +104,7 @@ export class AddonBlockStarredCoursesComponent extends CoreBlockBaseComponent im
     /**
      * Fetch the courses.
      *
-     * @return {Promise<any>} Promise resolved when done.
+     * @return Promise resolved when done.
      */
     protected fetchContent(): Promise<any> {
         return this.coursesHelper.getUserCoursesWithOptions('timemodified', 0, 'isfavourite').then((courses) => {
@@ -133,7 +133,7 @@ export class AddonBlockStarredCoursesComponent extends CoreBlockBaseComponent im
     /**
      * Prefetch all the shown courses.
      *
-     * @return {Promise<any>} Promise resolved when done.
+     * @return Promise resolved when done.
      */
     prefetchCourses(): Promise<any> {
         const initialIcon = this.prefetchCoursesData.icon;

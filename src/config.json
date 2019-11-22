@@ -2,8 +2,8 @@
   "app_id": "com.learnersplatform.mobile",
   "appname": "LearnersPlatform Mobile",
   "desktopappname": "LearnersPlatform Desktop",
-  "versioncode": 3730,
-  "versionname": "3.7.3",
+  "versioncode": 3800,
+  "versionname": "3.8.0",
   "cache_update_frequency_usually": 420000,
   "cache_update_frequency_often": 1200000,
   "cache_update_frequency_sometimes": 3600000,
@@ -88,5 +88,6 @@
   "statusbarlighttextandroid": true,
   "statusbarbgremotetheme": "#000000",
   "statusbarlighttextremotetheme": true,
-  "enableanalytics": false
+  "enableanalytics": false,
+  "forceColorScheme": ""
 }

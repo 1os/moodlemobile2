@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ export class AddonModForumPostComponent implements OnInit, OnDestroy {
     uniqueId: string;
     advanced = false; // Display all form fields.
     tagsEnabled: boolean;
+    displaySubject = true;
 
     protected syncId: string;
 
@@ -78,17 +79,22 @@ export class AddonModForumPostComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         this.uniqueId = this.post.id ? 'reply' + this.post.id : 'edit' + this.post.parent;
+
+        const reTranslated = this.translate.instant('addon.mod_forum.re');
+        this.displaySubject = this.post.parent == 0 ||
+            (this.post.subject != this.defaultSubject && this.post.subject != 'Re: ' + this.defaultSubject &&
+                this.post.subject != reTranslated + this.defaultSubject);
     }
 
     /**
      * Set data to new post, clearing temporary files and updating original data.
      *
-     * @param {number} [replyingTo] Id of post beeing replied.
-     * @param {boolean} [isEditing] True it's an offline reply beeing edited, false otherwise.
-     * @param {string} [subject] Subject of the reply.
-     * @param {string} [message] Message of the reply.
-     * @param {boolean} [isPrivate] True if it's private reply.
-     * @param {any[]} [files] Reply attachments.
+     * @param replyingTo Id of post beeing replied.
+     * @param isEditing True it's an offline reply beeing edited, false otherwise.
+     * @param subject Subject of the reply.
+     * @param message Message of the reply.
+     * @param isPrivate True if it's private reply.
+     * @param files Reply attachments.
      */
     protected setReplyData(replyingTo?: number, isEditing?: boolean, subject?: string, message?: string, files?: any[],
             isPrivate?: boolean): void {
@@ -172,7 +178,7 @@ export class AddonModForumPostComponent implements OnInit, OnDestroy {
     /**
      * Message changed.
      *
-     * @param {string} text The new text.
+     * @param text The new text.
      */
     onMessageChange(text: string): void {
         this.replyData.message = text;
@@ -338,7 +344,7 @@ export class AddonModForumPostComponent implements OnInit, OnDestroy {
     /**
      * Confirm discard changes if any.
      *
-     * @return {Promise<void>} Promise resolved if the user confirms or data was not changed and rejected otherwise.
+     * @return Promise resolved if the user confirms or data was not changed and rejected otherwise.
      */
     protected confirmDiscard(): Promise<void> {
         if (this.forumHelper.hasPostDataChanged(this.replyData, this.originalData)) {

@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,8 +22,6 @@ import { CoreDomUtilsProvider } from '@providers/utils/dom';
 import { CoreIframeUtilsProvider } from '@providers/utils/iframe';
 import { CoreSplitViewComponent } from '@components/split-view/split-view';
 
-/**
- */
 @Component({
     selector: 'core-iframe',
     templateUrl: 'core-iframe.html'

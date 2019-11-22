@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import { CoreCourseProvider } from '@core/course/providers/course';
 import { CoreCourseActivityPrefetchHandlerBase } from '@core/course/classes/activity-prefetch-handler';
 import { AddonModGlossaryProvider } from './glossary';
 import { AddonModGlossarySyncProvider } from './sync';
+import { CoreFilterHelperProvider } from '@core/filter/providers/helper';
 
 /**
  * Handler to prefetch forums.
@@ -41,19 +42,20 @@ export class AddonModGlossaryPrefetchHandler extends CoreCourseActivityPrefetchH
             filepoolProvider: CoreFilepoolProvider,
             sitesProvider: CoreSitesProvider,
             domUtils: CoreDomUtilsProvider,
+            filterHelper: CoreFilterHelperProvider,
             private glossaryProvider: AddonModGlossaryProvider,
             private syncProvider: AddonModGlossarySyncProvider) {
 
-        super(translate, appProvider, utils, courseProvider, filepoolProvider, sitesProvider, domUtils);
+        super(translate, appProvider, utils, courseProvider, filepoolProvider, sitesProvider, domUtils, filterHelper);
     }
 
     /**
      * Get list of files. If not defined, we'll assume they're in module.contents.
      *
-     * @param {any} module Module.
-     * @param {Number} courseId Course ID the module belongs to.
-     * @param {boolean} [single] True if we're downloading a single module, false if we're downloading a whole section.
-     * @return {Promise<any[]>} Promise resolved with the list of files.
+     * @param module Module.
+     * @param courseId Course ID the module belongs to.
+     * @param single True if we're downloading a single module, false if we're downloading a whole section.
+     * @return Promise resolved with the list of files.
      */
     getFiles(module: any, courseId: number, single?: boolean): Promise<any[]> {
         return this.glossaryProvider.getGlossary(courseId, module.id).then((glossary) => {
@@ -70,10 +72,10 @@ export class AddonModGlossaryPrefetchHandler extends CoreCourseActivityPrefetchH
     /**
      * Get the list of downloadable files. It includes entry embedded files.
      *
-     * @param  {any}   module   Module to get the files.
-     * @param  {any}   glossary Glossary
-     * @param  {any[]} entries  Entries of the Glossary.
-     * @return {any[]}          List of Files.
+     * @param module Module to get the files.
+     * @param glossary Glossary
+     * @param entries Entries of the Glossary.
+     * @return List of Files.
      */
     protected getFilesFromGlossaryAndEntries(module: any, glossary: any, entries: any[]): any[] {
         let files = this.getIntroFilesFromInstance(module, glossary);
@@ -96,9 +98,9 @@ export class AddonModGlossaryPrefetchHandler extends CoreCourseActivityPrefetchH
     /**
      * Invalidate the prefetched content.
      *
-     * @param {number} moduleId The module ID.
-     * @param {number} courseId The course ID the module belongs to.
-     * @return {Promise<any>} Promise resolved when the data is invalidated.
+     * @param moduleId The module ID.
+     * @param courseId The course ID the module belongs to.
+     * @return Promise resolved when the data is invalidated.
      */
     invalidateContent(moduleId: number, courseId: number): Promise<any> {
         return this.glossaryProvider.invalidateContent(moduleId, courseId);
@@ -107,11 +109,11 @@ export class AddonModGlossaryPrefetchHandler extends CoreCourseActivityPrefetchH
     /**
      * Prefetch a module.
      *
-     * @param {any} module Module.
-     * @param {number} courseId Course ID the module belongs to.
-     * @param {boolean} [single] True if we're downloading a single module, false if we're downloading a whole section.
-     * @param {string} [dirPath] Path of the directory where to store all the content files.
-     * @return {Promise<any>} Promise resolved when done.
+     * @param module Module.
+     * @param courseId Course ID the module belongs to.
+     * @param single True if we're downloading a single module, false if we're downloading a whole section.
+     * @param dirPath Path of the directory where to store all the content files.
+     * @return Promise resolved when done.
      */
     prefetch(module: any, courseId?: number, single?: boolean, dirPath?: string): Promise<any> {
         return this.prefetchPackage(module, courseId, single, this.prefetchGlossary.bind(this));
@@ -120,11 +122,11 @@ export class AddonModGlossaryPrefetchHandler extends CoreCourseActivityPrefetchH
     /**
      * Prefetch a glossary.
      *
-     * @param {any} module The module object returned by WS.
-     * @param {number} courseId Course ID the module belongs to.
-     * @param {boolean} single True if we're downloading a single module, false if we're downloading a whole section.
-     * @param {string} siteId Site ID.
-     * @return {Promise<any>} Promise resolved when done.
+     * @param module The module object returned by WS.
+     * @param courseId Course ID the module belongs to.
+     * @param single True if we're downloading a single module, false if we're downloading a whole section.
+     * @param siteId Site ID.
+     * @return Promise resolved when done.
      */
     protected prefetchGlossary(module: any, courseId: number, single: boolean, siteId: string): Promise<any> {
         siteId = siteId || this.sitesProvider.getCurrentSiteId();
@@ -193,10 +195,10 @@ export class AddonModGlossaryPrefetchHandler extends CoreCourseActivityPrefetchH
     /**
      * Sync a module.
      *
-     * @param {any} module Module.
-     * @param {number} courseId Course ID the module belongs to
-     * @param {string} [siteId] Site ID. If not defined, current site.
-     * @return {Promise<any>} Promise resolved when done.
+     * @param module Module.
+     * @param courseId Course ID the module belongs to
+     * @param siteId Site ID. If not defined, current site.
+     * @return Promise resolved when done.
      */
     sync(module: any, courseId: number, siteId?: any): Promise<any> {
         const promises = [

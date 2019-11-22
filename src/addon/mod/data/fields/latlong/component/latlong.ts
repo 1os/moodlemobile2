@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Platform } from 'ionic-angular';
+import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 import { AddonModDataFieldPluginComponent } from '../../../classes/field-plugin-component';
+import { CoreDomUtilsProvider } from '@providers/utils/dom';
 
 /**
  * Component to render data latlong field.
@@ -28,16 +30,17 @@ export class AddonModDataFieldLatlongComponent extends AddonModDataFieldPluginCo
     north: number;
     east: number;
 
-    constructor(protected fb: FormBuilder, private platform: Platform) {
+    constructor(protected fb: FormBuilder, private platform: Platform, private geolocation: Geolocation,
+            private domUtils: CoreDomUtilsProvider) {
         super(fb);
     }
 
     /**
      * Format latitude and longitude in a simple text.
      *
-     * @param  {number} north Degrees north.
-     * @param  {number} east  Degrees East.
-     * @return {string}       Readable Latitude and logitude.
+     * @param north Degrees north.
+     * @param east Degrees East.
+     * @return Readable Latitude and logitude.
      */
     formatLatLong(north: number, east: number): string {
         if (north !== null || east !== null) {
@@ -51,9 +54,9 @@ export class AddonModDataFieldLatlongComponent extends AddonModDataFieldPluginCo
     /**
      * Get link to maps from latitude and longitude.
      *
-     * @param  {number} north Degrees north.
-     * @param  {number} east  Degrees East.
-     * @return {string}       Link to maps depending on platform.
+     * @param north Degrees north.
+     * @param east Degrees East.
+     * @return Link to maps depending on platform.
      */
     getLatLongLink(north: number, east: number): string {
         if (north !== null || east !== null) {
@@ -87,11 +90,36 @@ export class AddonModDataFieldLatlongComponent extends AddonModDataFieldPluginCo
     /**
      * Update value being shown.
      *
-     * @param {any} value New value to be set.
+     * @param value New value to be set.
      */
     protected updateValue(value: any): void {
         this.value = value;
         this.north = (value && parseFloat(value.content)) || null;
         this.east = (value && parseFloat(value.content1)) || null;
+    }
+
+    /**
+     * Get user location.
+     *
+     * @param {Event} $event The event.
+     */
+    getLocation(event: Event): void {
+        event.preventDefault();
+
+        const modal = this.domUtils.showModalLoading('addon.mod_data.gettinglocation', true);
+
+        const options: GeolocationOptions = {
+            enableHighAccuracy: true,
+            timeout: 30000
+        };
+
+        this.geolocation.getCurrentPosition(options).then((result) => {
+            this.form.controls['f_' + this.field.id + '_0'].setValue(result.coords.latitude);
+            this.form.controls['f_' + this.field.id + '_1'].setValue(result.coords.longitude);
+        }).catch((error) => {
+            this.domUtils.showErrorModalDefault(error,  'Error getting location');
+        }).finally(() => {
+            modal.dismiss();
+        });
     }
 }

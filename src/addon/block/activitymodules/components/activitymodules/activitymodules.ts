@@ -1,4 +1,4 @@
-// (C) Copyright 2015 Martin Dougiamas
+// (C) Copyright 2015 Moodle Pty Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ export class AddonBlockActivityModulesComponent extends CoreBlockBaseComponent i
     /**
      * Perform the invalidate content function.
      *
-     * @return {Promise<any>} Resolved when done.
+     * @return Resolved when done.
      */
     protected invalidateContent(): Promise<any> {
         return this.courseProvider.invalidateSections(this.instanceId);
@@ -61,7 +61,7 @@ export class AddonBlockActivityModulesComponent extends CoreBlockBaseComponent i
     /**
      * Fetch the data to render the block.
      *
-     * @return {Promise<any>} Promise resolved when done.
+     * @return Promise resolved when done.
      */
     protected fetchContent(): Promise<any> {
         return this.courseProvider.getSections(this.instanceId, false, true).then((sections) => {
