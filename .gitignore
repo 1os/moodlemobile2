@@ -40,3 +40,4 @@ e2e/build
 !/desktop/electron.js
 src/configconstants.ts
 /package-lock.json
+/package-lock.json~integration

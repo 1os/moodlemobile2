@@ -1,6 +1,6 @@
 {
   "name": "learnersplatform",
-  "version": "3.8.0",
+  "version": "3.9.1",
   "description": "The official app for LSP.",
   "author": {
     "name": "LearnersPlatform",
@@ -83,10 +83,12 @@
     "chart.js": "^2.7.2",
     "com-darryncampbell-cordova-plugin-intent": "^1.1.7",
     "cordova": "9.0.0",
-    "cordova-android": "8.0.0",
+    "cordova-android": "^8.0.0",
     "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-clipboard": "^1.3.0",
     "cordova-ios": "5.0.1",
+    "cordova-plugin-androidx": "^1.0.2",
+    "cordova-plugin-androidx-adapter": "^1.1.0",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-customurlscheme": "^4.4.0",
@@ -147,7 +149,6 @@
   },
   "cordova": {
     "platforms": [
-      "android",
       "ios"
     ],
     "plugins": {
@@ -184,7 +185,9 @@
       },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      }
+      },
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {}
     }
   },
   "main": "desktop/electron.js",
@@ -224,7 +227,7 @@
       "category": "public.app-category.education",
       "icon": "resources/desktop/icon.icns",
       "target": "mas",
-      "bundleVersion": "3.8.0",
+      "bundleVersion": "3.9.1",
       "extendInfo": {
         "ElectronTeamID": "2NU57U5PAW"
       }
@@ -232,6 +235,13 @@
     "win": {
       "target": "appx",
       "icon": "resources/desktop/icon.ico"
+    },
+    "appx": {
+      "applicationId": "LearnersPlatform",
+      "displayName": "LearnersPlatform",
+      "identityName": "60937LearnersPlatform.LearnersPlatform",
+      "publisher": "CN=E70D0F31-AC8A-4807-ABCF-4F8C60877862",
+      "publisherDisplayName": "LearnersPlatform"
     },
     "linux": {
       "category": "Education",

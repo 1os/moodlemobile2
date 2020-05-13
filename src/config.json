@@ -2,8 +2,8 @@
   "app_id": "com.learnersplatform.mobile",
   "appname": "LearnersPlatform Mobile",
   "desktopappname": "LearnersPlatform Desktop",
-  "versioncode": 3800,
-  "versionname": "3.8.0",
+  "versioncode": 3810,
+  "versionname": "3.8.1",
   "cache_update_frequency_usually": 420000,
   "cache_update_frequency_often": 1200000,
   "cache_update_frequency_sometimes": 3600000,
@@ -66,19 +66,19 @@
   "customurlscheme": "lpmobile",
   "siteurl": [
     {
-      "name": "LearnersPlatform Exams",
-      "url": "https://exams.learnersplatform.com"
+      "name": "LearnersPlatform question bank",
+      "url": "https://lpquestionbank.learnersplatform.com"
     },
     {
-      "name": "LearnersPlatform Med",
-      "url": "https://med.learnersplatform.com"
+      "name": "LearnersPlatform tutorial",
+      "url": "https://lptutorial.learnersplatform.com"
     }
   ],
   "sitename": "LearnersPlatform",
   "multisitesdisplay": "",
   "skipssoconfirmation": false,
   "forcedefaultlanguage": false,
-  "privacypolicy": "https:\/\/moodle.org\/mod\/page\/view.php?id=8148",
+  "privacypolicy": "https:\/\/learnersplatform.com\/mod\/page\/view.php?id=8148",
   "notificoncolor": "#ed177a",
   "statusbarbg": false,
   "statusbarlighttext": false,

@@ -6,7 +6,7 @@
   <Identity Name="60937LearnersPlatform.LearnersPlatform"
     ProcessorArchitecture="x64"
     Publisher="CN=E70D0F31-AC8A-4807-ABCF-4F8C60877862"
-    Version="3.8.0.0" />
+    Version="3.9.1.0" />
   <Properties>
     <DisplayName>LearnersPlatform</DisplayName>
     <PublisherDisplayName>LearnersPlatform</PublisherDisplayName>
